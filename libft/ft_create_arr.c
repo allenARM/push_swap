@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_comm_size.c                                     :+:      :+:    :+:   */
+/*   ft_create_arr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/14 19:50:05 by amelikia          #+#    #+#             */
-/*   Updated: 2018/12/14 19:50:05 by amelikia         ###   ########.fr       */
+/*   Created: 2018/11/27 14:45:07 by amelikia          #+#    #+#             */
+/*   Updated: 2018/12/05 19:23:10 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "libft.h"
 
-int		ft_comm_size(t_comm *root)
+char	**ft_create_arr(int height, int width)
 {
+	char	**arr;
 	int		i;
-	t_comm	*entity;
 
-	i = 1;
-	if (!root)
-		return (0);
-	if (root)
-	{
-		entity = root;
-		while (entity)
-			(entity = entity->next) && i++;
-	}
-	return (i);
+	arr = (char **)malloc(sizeof(char *) * (height + 1));
+	i = 0;
+	while (i < height)
+		arr[i++] = (char *)malloc(sizeof(char) * (width + 1));
+	arr[i] = NULL;
+	return (arr);
 }

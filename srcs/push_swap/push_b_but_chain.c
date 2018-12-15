@@ -1,37 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_b_while.c                                     :+:      :+:    :+:   */
+/*   push_b_but_chain.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/22 15:39:27 by amelikia          #+#    #+#             */
-/*   Updated: 2018/11/22 15:40:31 by amelikia         ###   ########.fr       */
+/*   Created: 2018/12/14 16:18:19 by amelikia          #+#    #+#             */
+/*   Updated: 2018/12/14 18:35:52 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push_b_while(t_list **stack_a, t_list **stack_b,
-	t_comm **commands, int last_sorted)
+void	push_b_but_chain(t_list **stack_a, t_list **stack_b)
 {
-	t_list *tmp;
+	int	ra;
 
-	tmp = ft_list_dup(*stack_a);
-	if (ft_list_size(tmp) < last_sorted + 1)
-	{
-		ft_list_clean(&tmp);
-		return ;
-	}
-	while ((*stack_a)->pos != last_sorted + 1)
+	ra = find_number_of_zero_chain(*stack_a);
+	while ((*stack_a)->if_chain == 0 && ra > 0)
 	{
 		push(stack_a, stack_b);
-		*commands = ft_comm_add_back((*commands), "pb");
+		ft_printf("pb\n");
+		--ra;
 	}
-	if ((*stack_a)->pos == last_sorted + 1)
+	while ((*stack_a)->if_chain == 1 && ra > 0)
+	{
+		rotate(stack_a);
+		ft_printf("ra\n");
+	}
+	while ((*stack_a)->if_chain == 0 && ra > 0)
 	{
 		push(stack_a, stack_b);
-		*commands = ft_comm_add_back((*commands), "pb");
+		ft_printf("pb\n");
+		--ra;
 	}
-	ft_list_clean(&tmp);
 }

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/22 15:42:32 by amelikia          #+#    #+#             */
-/*   Updated: 2018/11/22 15:43:14 by amelikia         ###   ########.fr       */
+/*   Created: 2018/12/14 19:50:43 by amelikia          #+#    #+#             */
+/*   Updated: 2018/12/14 19:50:43 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ void			ft_list_remove_front(t_list **list)
 	}
 	tmp = *list;
 	node = tmp->next;
-	tmp->next = NULL;
-	free(tmp);
+	if (tmp)
+	{
+		tmp->next = NULL;
+		free(tmp);
+	}
 	*list = node;
 }

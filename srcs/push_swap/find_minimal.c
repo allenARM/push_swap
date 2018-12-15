@@ -1,30 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_comm_size.c                                     :+:      :+:    :+:   */
+/*   find_minimal.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/14 19:50:05 by amelikia          #+#    #+#             */
-/*   Updated: 2018/12/14 19:50:05 by amelikia         ###   ########.fr       */
+/*   Created: 2018/12/14 17:51:14 by amelikia          #+#    #+#             */
+/*   Updated: 2018/12/14 17:53:18 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "push_swap.h"
 
-int		ft_comm_size(t_comm *root)
+void	find_minimal(t_list *stack, t_minimal *min, int pos, int id)
 {
-	int		i;
-	t_comm	*entity;
-
-	i = 1;
-	if (!root)
-		return (0);
-	if (root)
-	{
-		entity = root;
-		while (entity)
-			(entity = entity->next) && i++;
-	}
-	return (i);
+	if (id == 'a')
+		count_rotate_rev_rotate(stack, pos, &min->ra, &min->rra);
+	else
+		count_rotate_rev_rotate(stack, pos, &min->rb, &min->rrb);
 }

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/22 15:40:40 by amelikia          #+#    #+#             */
-/*   Updated: 2018/11/22 15:43:14 by amelikia         ###   ########.fr       */
+/*   Created: 2018/12/14 19:49:09 by amelikia          #+#    #+#             */
+/*   Updated: 2018/12/14 19:49:09 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		add_to_list(int i, char **argv, t_list **stack)
 			ft_printf("Error\n");
 			return (0);
 		}
-		*stack = ft_list_add_back((*stack), ft_atoi(argv[i++]), 0);
+		*stack = ft_list_add_back((*stack), ft_atoi(argv[i++]), 0, 0);
 	}
 	return (1);
 }

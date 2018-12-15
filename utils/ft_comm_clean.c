@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/22 15:41:29 by amelikia          #+#    #+#             */
-/*   Updated: 2018/11/22 15:43:14 by amelikia         ###   ########.fr       */
+/*   Created: 2018/12/14 19:49:56 by amelikia          #+#    #+#             */
+/*   Updated: 2018/12/14 19:49:57 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_comm_clean(t_comm **comm)
 {
 	t_comm *node;
 
-	if (*comm == NULL)
+	if (*comm == NULL || comm == NULL)
 		return ;
 	node = *comm;
 	if (node->next)

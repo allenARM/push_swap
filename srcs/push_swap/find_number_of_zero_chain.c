@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_the_biggest_sequence.c                        :+:      :+:    :+:   */
+/*   find_number_of_zero_chain.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/22 15:39:05 by amelikia          #+#    #+#             */
-/*   Updated: 2018/11/22 15:40:31 by amelikia         ###   ########.fr       */
+/*   Created: 2018/12/14 19:47:12 by amelikia          #+#    #+#             */
+/*   Updated: 2018/12/14 19:47:13 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		find_the_biggest_sequence(t_list *stack_b, int last_sorted)
+int		find_number_of_zero_chain(t_list *stack)
 {
-	t_list	*tmp;
-	int		end;
+	int zeros;
 
-	tmp = stack_b;
-	last_sorted++;
-	end = last_sorted;
-	while (tmp)
+	zeros = 0;
+	while (stack)
 	{
-		if (tmp->pos == end + 1)
-		{
-			++end;
-			tmp = stack_b;
-		}
-		else
-			tmp = tmp->next;
+		if (stack->if_chain == 0)
+			zeros++;
+		stack = stack->next;
 	}
-	return (end);
+	return (zeros);
 }

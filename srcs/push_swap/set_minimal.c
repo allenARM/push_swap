@@ -1,24 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_last_comm.c                                  :+:      :+:    :+:   */
+/*   set_minimal.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/22 15:38:45 by amelikia          #+#    #+#             */
-/*   Updated: 2018/11/22 15:38:45 by amelikia         ###   ########.fr       */
+/*   Created: 2018/12/14 17:50:35 by amelikia          #+#    #+#             */
+/*   Updated: 2018/12/14 18:21:15 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		check_last_comm(t_comm *list, char *command)
+void	set_minimal(t_minimal *min)
 {
-	if (list == NULL)
-		return (-1);
-	while (list->next)
-		list = list->next;
-	if (!ft_strcmp(list->command, command))
-		return (1);
-	return (-1);
+	min->ra = 0;
+	min->rb = 0;
+	min->rra = 0;
+	min->rrb = 0;
+	min->rr = 0;
+	min->rrr = 0;
+	min->current_total = 2147483647;
 }

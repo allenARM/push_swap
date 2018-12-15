@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_comm_size.c                                     :+:      :+:    :+:   */
+/*   ft_clean_arr.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/14 19:50:05 by amelikia          #+#    #+#             */
-/*   Updated: 2018/12/14 19:50:05 by amelikia         ###   ########.fr       */
+/*   Created: 2018/11/27 14:45:44 by amelikia          #+#    #+#             */
+/*   Updated: 2018/11/27 14:47:58 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "libft.h"
 
-int		ft_comm_size(t_comm *root)
+void		ft_clean_arr(char ***argv)
 {
 	int		i;
-	t_comm	*entity;
+	int		j;
 
-	i = 1;
-	if (!root)
-		return (0);
-	if (root)
+	i = 0;
+	j = 0;
+	if (!(*argv)[i])
+		return ;
+	while ((*argv)[i])
+		i++;
+	while (j < i)
 	{
-		entity = root;
-		while (entity)
-			(entity = entity->next) && i++;
+		free((*argv)[j]);
+		j++;
 	}
-	return (i);
+	free(*argv);
 }

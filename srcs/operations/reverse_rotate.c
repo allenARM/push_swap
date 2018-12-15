@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/22 15:38:02 by amelikia          #+#    #+#             */
-/*   Updated: 2018/11/22 15:38:03 by amelikia         ###   ########.fr       */
+/*   Created: 2018/12/14 19:46:51 by amelikia          #+#    #+#             */
+/*   Updated: 2018/12/14 19:46:52 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,6 @@ void		reverse_rotate(t_list **list)
 	node = *list;
 	while (node->next)
 		node = node->next;
-	*list = ft_list_add_front(*list, node->data, node->pos);
+	*list = ft_list_add_front(*list, node->data, node->pos, node->if_chain);
 	ft_list_remove_back(list);
 }

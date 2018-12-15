@@ -3,68 +3,59 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amelikia <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/12 13:54:14 by amelikia          #+#    #+#             */
-/*   Updated: 2018/10/19 14:49:28 by amelikia         ###   ########.fr       */
+/*   Updated: 2018/12/04 14:15:12 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char		**checkforn(char **line, int fd, int len, char **str)
+int		read_from_fd_into_stock(int const fd, char **stock)
 {
-	char	*tmp;
+	static char	buff[BUFF_SIZE + 1] = { ENDL };
+	int			read_bytes;
+	char		*nstr;
 
-	*line = ft_strsub(str[fd], 0, len);
-	tmp = ft_strdup(str[fd] + len + 1);
-	free(str[fd]);
-	str[fd] = tmp;
-	return (str);
+	read_bytes = read(fd, buff, BUFF_SIZE);
+	if (read_bytes > 0)
+	{
+		buff[read_bytes] = '\0';
+		nstr = ft_strjoin(*stock, buff);
+		if (!nstr)
+			return (-1);
+		free(*stock);
+		*stock = nstr;
+	}
+	return (read_bytes);
 }
 
-static int		newline(char **str, char **line, int fd, int vlu)
+int		get_next_line(int const fd, char **line)
 {
-	int		len;
+	static char	*stock = NULL;
+	char		*endl_index;
+	int			ret;
 
-	len = 0;
-	while (str[fd][len] != '\n' && str[fd][len] != '\0')
-		len++;
-	if (str[fd][len] == '\n')
-		checkforn(line, fd, len, str);
-	else if (str[fd][len] == '\0')
+	if (!stock && (stock = (char *)ft_memalloc(sizeof(char))) == NULL)
+		return (-1);
+	endl_index = ft_strchr(stock, ENDL);
+	while (endl_index == NULL)
 	{
-		if (vlu == BUFF_SIZE)
-			return (get_next_line(fd, line));
-		*line = ft_strdup(str[fd]);
-		ft_strdel(&str[fd]);
+		ret = read_from_fd_into_stock(fd, &stock);
+		if (ret == 0)
+		{
+			if ((endl_index = ft_strchr(stock, '\0')) == stock)
+				return (0);
+		}
+		else if (ret < 0)
+			return (-1);
+		else
+			endl_index = ft_strchr(stock, ENDL);
 	}
+	*line = ft_strsub(stock, 0, endl_index - stock);
+	if (!*line)
+		return (-1);
+	stock = ft_update(stock, ft_strdup(endl_index + 1));
 	return (1);
-}
-
-int				get_next_line(const int fd, char **line)
-{
-	static char	*str[255];
-	char		buffer[BUFF_SIZE + 1];
-	char		*tmp;
-	int			vlu;
-
-	if (fd < 0 || line == NULL)
-		return (-1);
-	while ((vlu = read(fd, buffer, BUFF_SIZE)) > 0)
-	{
-		buffer[vlu] = '\0';
-		if (str[fd] == NULL)
-			str[fd] = ft_strnew(1);
-		tmp = ft_strjoin(str[fd], buffer);
-		free(str[fd]);
-		str[fd] = tmp;
-		if (ft_strchr(buffer, '\n'))
-			break ;
-	}
-	if (vlu < 0)
-		return (-1);
-	else if (vlu == 0 && (str[fd] == NULL || str[fd][0] == '\0'))
-		return (0);
-	return (newline(str, line, fd, vlu));
 }

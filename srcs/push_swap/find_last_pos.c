@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_comm_size.c                                     :+:      :+:    :+:   */
+/*   find_last_pos.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/14 19:50:05 by amelikia          #+#    #+#             */
-/*   Updated: 2018/12/14 19:50:05 by amelikia         ###   ########.fr       */
+/*   Created: 2018/12/14 17:50:15 by amelikia          #+#    #+#             */
+/*   Updated: 2018/12/14 17:53:17 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "push_swap.h"
 
-int		ft_comm_size(t_comm *root)
+int		find_last_pos(t_list *stack)
 {
-	int		i;
-	t_comm	*entity;
-
-	i = 1;
-	if (!root)
+	if (stack == NULL)
 		return (0);
-	if (root)
-	{
-		entity = root;
-		while (entity)
-			(entity = entity->next) && i++;
-	}
-	return (i);
+	while (stack->next)
+		stack = stack->next;
+	return (stack->pos);
 }

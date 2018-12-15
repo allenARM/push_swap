@@ -1,30 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_comm_size.c                                     :+:      :+:    :+:   */
+/*   find_pos.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/14 19:50:05 by amelikia          #+#    #+#             */
-/*   Updated: 2018/12/14 19:50:05 by amelikia         ###   ########.fr       */
+/*   Created: 2018/12/14 17:51:29 by amelikia          #+#    #+#             */
+/*   Updated: 2018/12/14 17:53:19 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "push_swap.h"
 
-int		ft_comm_size(t_comm *root)
+int		find_pos(t_list *stack_a, int min_max)
 {
-	int		i;
-	t_comm	*entity;
+	t_list	*tmp;
+	int		min;
+	int		max;
 
-	i = 1;
-	if (!root)
-		return (0);
-	if (root)
+	max = 0;
+	min = 2147483647;
+	tmp = stack_a;
+	while (tmp)
 	{
-		entity = root;
-		while (entity)
-			(entity = entity->next) && i++;
+		if (max < tmp->pos && min_max == 1)
+			max = tmp->pos;
+		if (min > tmp->pos && min_max == -1)
+			min = tmp->pos;
+		tmp = tmp->next;
 	}
-	return (i);
+	if (min_max == -1)
+		return (min);
+	return (max);
 }

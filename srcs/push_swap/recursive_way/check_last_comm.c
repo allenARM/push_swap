@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solver_optimal.c                                   :+:      :+:    :+:   */
+/*   check_last_comm.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/22 15:40:14 by amelikia          #+#    #+#             */
-/*   Updated: 2018/11/22 15:40:31 by amelikia         ###   ########.fr       */
+/*   Created: 2018/12/14 19:47:07 by amelikia          #+#    #+#             */
+/*   Updated: 2018/12/14 19:47:07 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int		search(t_list *stack_a, t_list *stack_b, int set_depth, \
-		t_comm **command_list)
+int		check_last_comm(t_comm *list, char *command)
 {
-	if (check_answer(stack_a, stack_b) == 1)
-		return (1);
-	if (set_depth == 0)
+	if (list == NULL)
 		return (-1);
-	if (swap_rec(stack_a, stack_b, set_depth, command_list) == 1)
-		return (1);
-	if (push_rec(stack_a, stack_b, set_depth, command_list) == 1)
-		return (1);
-	if (rotate_rec(stack_a, stack_b, set_depth, command_list) == 1)
-		return (1);
-	if (reverse_rotate_rec(stack_a, stack_b, set_depth, command_list) == 1)
+	while (list->next)
+		list = list->next;
+	if (!ft_strcmp(list->command, command))
 		return (1);
 	return (-1);
 }

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/22 15:39:45 by amelikia          #+#    #+#             */
-/*   Updated: 2018/11/22 15:40:31 by amelikia         ###   ########.fr       */
+/*   Created: 2018/12/14 19:48:30 by amelikia          #+#    #+#             */
+/*   Updated: 2018/12/14 19:49:03 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,19 @@ int	main(int argc, char **argv)
 	int		i;
 	int		flag_optimized;
 	t_list	*stack;
+	int		flag_c;
+	int		flag_v;
 
 	flag_optimized = 0;
 	stack = NULL;
 	if (argc >= 2)
 	{
-		i = color_and_status_check(argv, 0, 0, &flag_optimized);
+		i = color_and_status_check(argv, &flag_c, &flag_v, &flag_optimized);
+		if (flag_c == 1 || flag_v == 1)
+		{
+			write(2, "Error\n", 6);
+			return (0);
+		}
 		if (if_str_split(argv, &stack, &i) == 0)
 			return (0);
 	}

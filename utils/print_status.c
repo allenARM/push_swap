@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/22 15:42:56 by amelikia          #+#    #+#             */
-/*   Updated: 2018/11/22 15:42:57 by amelikia         ###   ########.fr       */
+/*   Created: 2018/12/14 19:51:01 by amelikia          #+#    #+#             */
+/*   Updated: 2018/12/14 19:51:02 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	print_status(t_list *stack_a, t_list *stack_b, int color)
 	int		max_length_b;
 	int		printed_rows;
 
+	ft_printf("%s", CLEAN);
 	ft_printf("-------------------------\n");
 	if (ft_list_size(stack_a) > ft_list_size(stack_b))
 		heigth = ft_list_size(stack_a);

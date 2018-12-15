@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/22 15:42:09 by amelikia          #+#    #+#             */
-/*   Updated: 2018/11/22 15:43:14 by amelikia         ###   ########.fr       */
+/*   Created: 2018/12/14 19:50:28 by amelikia          #+#    #+#             */
+/*   Updated: 2018/12/14 19:50:28 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_list		*ft_list_dup(t_list *list)
 		return (NULL);
 	while (tmp)
 	{
-		new = ft_list_add_back(new, tmp->data, tmp->pos);
+		new = ft_list_add_back(new, tmp->data, tmp->pos, tmp->if_chain);
 		tmp = tmp->next;
 	}
 	return (new);

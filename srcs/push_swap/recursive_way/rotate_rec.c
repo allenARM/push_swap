@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap_rec.c                                         :+:      :+:    :+:   */
+/*   rotate_rec.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/22 15:40:26 by amelikia          #+#    #+#             */
-/*   Updated: 2018/11/22 15:40:31 by amelikia         ###   ########.fr       */
+/*   Created: 2018/12/14 19:47:39 by amelikia          #+#    #+#             */
+/*   Updated: 2018/12/14 19:47:39 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int			swap_rec_sa(t_list *stack_a, t_list *stack_b, int set_depth, \
+int			rotate_rec_ra(t_list *stack_a, t_list *stack_b, int set_depth, \
 		t_comm **command_list)
 {
-	if (check_last_comm(*command_list, "sa") == 1 || \
-			check_last_comm(*command_list, "sb") == 1 || \
+	if (check_last_comm(*command_list, "rra") == 1 || \
+			check_last_comm(*command_list, "rb") == 1 || \
 			ft_list_size(stack_a) == 1 || stack_a == NULL)
 		return (-1);
-	*command_list = ft_comm_add_back(*command_list, "sa");
+	*command_list = ft_comm_add_back(*command_list, "ra");
 	if (search(stack_a, stack_b, set_depth - 1, command_list) != 1)
 	{
 		ft_comm_remove_back(command_list);
@@ -28,14 +28,14 @@ int			swap_rec_sa(t_list *stack_a, t_list *stack_b, int set_depth, \
 	return (1);
 }
 
-int			swap_rec_sb(t_list *stack_a, t_list *stack_b, int set_depth, \
+int			rotate_rec_rb(t_list *stack_a, t_list *stack_b, int set_depth, \
 		t_comm **command_list)
 {
-	if (check_last_comm(*command_list, "sa") == 1 || \
-			check_last_comm(*command_list, "sb") == 1 || \
+	if (check_last_comm(*command_list, "rrb") == 1 || \
+			check_last_comm(*command_list, "ra") == 1 || \
 			ft_list_size(stack_b) == 1 || stack_b == NULL)
 		return (-1);
-	*command_list = ft_comm_add_back(*command_list, "sb");
+	*command_list = ft_comm_add_back(*command_list, "rb");
 	if (search(stack_a, stack_b, set_depth - 1, command_list) != 1)
 	{
 		ft_comm_remove_back(command_list);
@@ -44,10 +44,10 @@ int			swap_rec_sb(t_list *stack_a, t_list *stack_b, int set_depth, \
 	return (1);
 }
 
-int			swap_rec_ss(t_list *stack_a, t_list *stack_b, int set_depth, \
+int			rotate_rec_rr(t_list *stack_a, t_list *stack_b, int set_depth, \
 		t_comm **command_list)
 {
-	*command_list = ft_comm_add_back(*command_list, "ss");
+	*command_list = ft_comm_add_back(*command_list, "rr");
 	if (search(stack_a, stack_b, set_depth - 1, command_list) != 1)
 	{
 		ft_comm_remove_back(command_list);
@@ -56,27 +56,27 @@ int			swap_rec_ss(t_list *stack_a, t_list *stack_b, int set_depth, \
 	return (1);
 }
 
-int			swap_rec(t_list *stack_a, t_list *stack_b, int set_depth, \
+int			rotate_rec(t_list *stack_a, t_list *stack_b, int set_depth, \
 		t_comm **command_list)
 {
-	t_list	*temp_a;
-	t_list	*temp_b;
+	t_list		*temp_a;
+	t_list		*temp_b;
 
 	temp_a = ft_list_dup(stack_a);
 	temp_b = ft_list_dup(stack_b);
-	swap(&temp_a);
-	swap(&temp_b);
-	if (swap_rec_sa(temp_a, stack_b, set_depth, command_list) == 1)
+	rotate(&temp_a);
+	rotate(&temp_b);
+	if (rotate_rec_ra(temp_a, stack_b, set_depth, command_list) == 1)
 	{
 		ft_list_clean_two(&temp_a, &temp_b);
 		return (1);
 	}
-	if (swap_rec_sb(stack_a, temp_b, set_depth, command_list) == 1)
+	if (rotate_rec_rb(stack_a, temp_b, set_depth, command_list) == 1)
 	{
 		ft_list_clean_two(&temp_a, &temp_b);
 		return (1);
 	}
-	if (swap_rec_ss(temp_a, temp_b, set_depth, command_list) == 1)
+	if (rotate_rec_rr(temp_a, temp_b, set_depth, command_list) == 1)
 	{
 		ft_list_clean_two(&temp_a, &temp_b);
 		return (1);

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/22 15:38:12 by amelikia          #+#    #+#             */
-/*   Updated: 2018/11/22 15:38:12 by amelikia         ###   ########.fr       */
+/*   Created: 2018/12/14 19:47:00 by amelikia          #+#    #+#             */
+/*   Updated: 2018/12/14 19:47:00 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,7 @@ void		swap(t_list **list)
 	tmp = elem1->pos;
 	elem1->pos = elem2->pos;
 	elem2->pos = tmp;
+	tmp = elem1->if_chain;
+	elem1->if_chain = elem2->if_chain;
+	elem2->if_chain = tmp;
 }
